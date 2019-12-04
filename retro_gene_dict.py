@@ -21,7 +21,7 @@ final_retro_gene = []
 final_retro_gene_info ={}
 
 distance_cutoff = 0
-with open("G:/Pan_cancer/Mapping_source/canFam3.gtf") as f:
+with open("/Volumes/Research_Data/Pan_cancer/Mapping_source/canFam3.gtf") as f:
     file = f.read()
     
 total = file.split('\n')[5:-1]
@@ -71,13 +71,9 @@ gene_distance={}
 for i in candidate_ensembleID_number:
     gene_distance[i]=int(gene_location[i][1]-gene_location[i][0])
     if gene_distance[i] > distance_cutoff :
-       chro =  total_gene[i].split('chr')[1]
-       if chro.isdigit(): 
-           locatio = gene_location[i]
-           final_retro_gene_info[i]=[int(chro),locatio]
-       elif chro.upper()=='X':
-           locatio = gene_location[i]
-           final_retro_gene_info[i]=[chro,locatio]
+       chro =  total_gene[i]
+       locatio = gene_location[i]
+       final_retro_gene_info[i]=[chro,locatio]
           
     
    
@@ -87,27 +83,29 @@ sns.set(font_scale=3)
 sns.distplot(list(gene_distance.values()),kde=False, axlabel= 'Gene_length', color='black') 
 #plt.xlim(0, 2000)
 #plt.ylim(0,125)
-plt.savefig('G:/Pan_cancer/Mapping_source/candidate_retro_gene_length.png')
+plt.savefig('/Volumes/Research_Data/Pan_cancer/Retro_gene_finding/candidate_retro_gene_length.png')
 plt.close()            
 
     
 
-
-output = open('G:/Pan_cancer/Mapping_source/retro_gene_list_information.txt','w')    
-#output.write('Ensemble_id'+'\t'+'chromosome_location'+'\t'+'gene_start'+'\t'+'gene_end'+'\n')
+output_genelist = open('/Volumes/Research_Data/Pan_cancer/Retro_gene_finding/retro_gene_list.txt','w')
+output = open('/Volumes/Research_Data/Pan_cancer/Retro_gene_finding/retro_gene_list_information.txt','w')    
+output.write('Ensemble_id'+'\t'+'chromosome_location'+'\t'+'gene_start'+'\t'+'gene_end'+'\n')
 for i in final_retro_gene_info.keys():
-    output.write(i+'\n')
-    #output.write(str(final_retro_gene_info[i][1][0])+'\t')
-    #output.write(str(final_retro_gene_info[i][1][1])+'\n')
+    output_genelist.write(i+'\n')
+    output.write(i+'\t')
+    output.write(str(final_retro_gene_info[i][0]+'\t'))
+    output.write(str(final_retro_gene_info[i][1][0])+'\t')
+    output.write(str(final_retro_gene_info[i][1][1])+'\n')
 
 output.close()
-
+output_genelist.close()
 
     
-retro_data= pd.read_csv("/Users/kun-linho/Desktop/Retro_gene_finding/retro_gene_list_information.txt",sep='\t')
+retro_data= pd.read_csv("/Volumes/Research_Data/Pan_cancer/Retro_gene_finding/retro_gene_list_information.txt",sep='\t')
 retro_data['Difference']= retro_data['gene_end']-retro_data['gene_start']
 #retro_data.sort_values(by = 'chromosome_location',inplace= True)
-retro_data[retro_data['Difference']>=1000]
+retro_data[retro_data['Difference']>=800]
     
     
     
