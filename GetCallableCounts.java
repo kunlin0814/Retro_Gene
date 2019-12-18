@@ -25,10 +25,10 @@ public class GetCallableCounts {
     
     public static void main(String[] args) throws IOException {
        
-        String annotationFile = "G:\\Pan_cancer\\Mapping_source\\canFam3.gtf";
-        String geneListFile = "C:\\Users\\abc73_000\\Desktop\\gene_list.txt";
-        String sampleWigFile = "C:\\Users\\abc73_000\\Desktop\\sample_wig.txt";
-        String outputFile = "C:\\Users\\abc73_000\\Desktop\\java_test.txt";
+        String annotationFile = "/Volumes/Research_Data/Pan_cancer/Mapping_source/canFam3.gtf";
+        String geneListFile = "/Volumes/Research_Data/Pan_cancer/Retro_gene_finding/RetroGeneList/retro_gene_list.txt";
+        String sampleWigFile = "/Volumes/Research_Data/Pan_cancer/Retro_gene_finding/sample_wig.txt";
+        String outputFile = "/Volumes/Research_Data/Pan_cancer/Retro_gene_finding/test_not_remove_java_test.txt";
         
         // Step 1: Reading gene list
         System.out.println("Step 1: reading gene list file: " + geneListFile);
@@ -201,7 +201,7 @@ public class GetCallableCounts {
                     } else if(location.getEnd() >= currentPos) {
                         // this gene just started, add it to started and temp genes
                         startedGenesInsideCurrentChr.add(gene);
-                        tempGenes.add(gene);
+                        //tempGenes.add(gene);
                     } else {
                         // this gene has to be skipped (its position hasn't appeared or skipped in the wig file)
                         // add it to temp genes so it can be removed from started genes later
