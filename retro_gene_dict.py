@@ -10,6 +10,9 @@ import seaborn as sns
 import pandas as pd
 
 
+target_chr = ['chr'+str(i) for i in range(1,39)]
+target_chr.append('chrx')
+
 gene_location={}
 gene_transcript={}
 transcript_number={}
@@ -74,8 +77,21 @@ for i in candidate_ensembleID_number:
        chro =  total_gene[i]
        locatio = gene_location[i]
        final_retro_gene_info[i]=[chro,locatio]
-          
+
+
+non_retro = {}          
+for i in total_gene.keys():
+    if i not in final_retro_gene_info.keys():
+        non_retro[i] = total_gene[i]
+
+non_retro_list = open('/Volumes/Research_Data/Pan_cancer/Retro_gene_finding/non_retro_gene_list.txt','w')
+#non_retro_list.write('Ensemble_id'+'\t'+'chromosome_location'+'\n')
+for i in real_gene.keys():  
+    if total_gene[i] in target_chr:
+        non_retro_list.write(i+'\n')
+        #non_retro_list.write(total_gene[i]+'\n')
     
+non_retro_list.close()    
    
 
 plt.figure(figsize=(16,9))
@@ -107,7 +123,4 @@ retro_data['Difference']= retro_data['gene_end']-retro_data['gene_start']
 #retro_data.sort_values(by = 'chromosome_location',inplace= True)
 retro_data[retro_data['Difference']>=800]
     
-    
-    
-                
         
