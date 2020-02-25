@@ -24,7 +24,7 @@ final_retro_gene = []
 final_retro_gene_info ={}
 
 distance_cutoff = 0
-with open("/Volumes/Research_Data/Pan_cancer/Mapping_source/canFam3.gtf") as f:
+with open("G:\\Pan_cancer\\Mapping_source\\Canis_familiaris.CanFam3.1.99.chr.gtf") as f:
     file = f.read()
     
 total = file.split('\n')[5:-1]
@@ -84,7 +84,7 @@ for i in total_gene.keys():
     if i not in final_retro_gene_info.keys():
         non_retro[i] = total_gene[i]
 
-non_retro_list = open('/Volumes/Research_Data/Pan_cancer/Retro_gene_finding/non_retro_gene_list.txt','w')
+non_retro_list = open('G:\\Pan_cancer\\Mapping_source\\new_non_retro_gene_list.txt','w')
 #non_retro_list.write('Ensemble_id'+'\t'+'chromosome_location'+'\n')
 for i in real_gene.keys():  
     if total_gene[i] in target_chr:
@@ -93,7 +93,7 @@ for i in real_gene.keys():
     
 non_retro_list.close()    
    
-
+"""
 plt.figure(figsize=(16,9))
 sns.set(font_scale=3)    
 sns.distplot(list(gene_distance.values()),kde=False, axlabel= 'Gene_length', color='black') 
@@ -101,11 +101,11 @@ sns.distplot(list(gene_distance.values()),kde=False, axlabel= 'Gene_length', col
 #plt.ylim(0,125)
 plt.savefig('/Volumes/Research_Data/Pan_cancer/Retro_gene_finding/candidate_retro_gene_length.png')
 plt.close()            
-
+"""
     
 
-output_genelist = open('/Volumes/Research_Data/Pan_cancer/Retro_gene_finding/retro_gene_list.txt','w')
-output = open('/Volumes/Research_Data/Pan_cancer/Retro_gene_finding/retro_gene_list_information.txt','w')    
+output_genelist = open('G:\\Pan_cancer\\Mapping_source\\new_retro_gene_list.txt','w')
+output = open('G:\\Pan_cancer\\Mapping_source\\new_retro_gene_list_information.txt','w')    
 output.write('Ensemble_id'+'\t'+'chromosome_location'+'\t'+'gene_start'+'\t'+'gene_end'+'\n')
 for i in final_retro_gene_info.keys():
     output_genelist.write(i+'\n')
@@ -117,10 +117,10 @@ for i in final_retro_gene_info.keys():
 output.close()
 output_genelist.close()
 
-    
+"""    
 retro_data= pd.read_csv("/Volumes/Research_Data/Pan_cancer/Retro_gene_finding/retro_gene_list_information.txt",sep='\t')
 retro_data['Difference']= retro_data['gene_end']-retro_data['gene_start']
 #retro_data.sort_values(by = 'chromosome_location',inplace= True)
 retro_data[retro_data['Difference']>=800]
-    
+"""    
         
