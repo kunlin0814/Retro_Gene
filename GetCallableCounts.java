@@ -25,10 +25,10 @@ public class GetCallableCounts {
     
     public static void main(String[] args) throws IOException {
        
-        String annotationFile = "/Volumes/Research_Data/Pan_cancer/Mapping_source/canFam3.gtf";
-        String geneListFile = "/Volumes/Research_Data/Pan_cancer/Retro_gene_finding/RetroGeneList/retro_gene_list.txt";
-        String sampleWigFile = "/Volumes/Research_Data/Pan_cancer/Retro_gene_finding/sample_wig.txt";
-        String outputFile = "/Volumes/Research_Data/Pan_cancer/Retro_gene_finding/test_not_remove_java_test.txt";
+        String annotationFile = "G:\\MAC_Research_Data\\Pan_cancer\\Mapping_source\\Canis_familiaris.CanFam3.1.99.chr.gtf";
+        String geneListFile = "G:\\MAC_Research_Data\\Pan_cancer\\Retro_gene_finding\\RetroGeneList\\new_retro_gene_list_CanFam3.1.99gtf.txt";
+        String sampleWigFile = "G:\\MAC_Research_Data\\Pan_cancer\\Retro_gene_finding\\sample_wig.txt";
+        String outputFile = "G:\\MAC_Research_Data\\Pan_cancer\\Retro_gene_finding\\new_GTF-java_test.txt";
         
         // Step 1: Reading gene list
         System.out.println("Step 1: reading gene list file: " + geneListFile);
@@ -133,6 +133,10 @@ public class GetCallableCounts {
         writer.close();
         System.out.println("Finished writing results to output file: " + outputFile);
     }
+    
+    // Step 5 : sum up the final result
+    
+    
     
     public static Map<String, GeneLocationInfo> getGenesInfo(String gtfFile, ArrayList<String> geneList) throws IOException {
         Map<String, GeneLocationInfo> result = new HashMap<>();
