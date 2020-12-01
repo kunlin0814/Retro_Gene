@@ -6,7 +6,9 @@
 #PBS -q batch
 
 
-module load Python/3.7.0-foss-2018a
+
+
+ml Anaconda3/2020.02
 
 cd  /scratch/kh31516/Original_Melanoma/
 
